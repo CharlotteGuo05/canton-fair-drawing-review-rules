@@ -21,7 +21,7 @@ public class BasicPicRule implements Rule {
         if(!materialRequirement.equals("True")) return RuleResult.fail("图片未包含搭建材料全部使用B1级难燃材料字段");
         for(String material:materialList){
             if(!flameProofMaterial.contains(material)){
-                return RuleResult.fail("有材料不在阻燃/难燃材料清单中");
+                return RuleResult.fail("材料("+material+")不在阻燃/难燃材料清单中");
             }
         }
 

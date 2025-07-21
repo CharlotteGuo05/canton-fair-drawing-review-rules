@@ -61,6 +61,6 @@ public class AreaRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("单片瓷砖面积不得超过122 cm *244 cm", result.getReason());
+        assertEquals("图中单片瓷砖面积为"+tile.getArea()+"mm²,超过了122cm*244 cm", result.getReason());
     }
 }

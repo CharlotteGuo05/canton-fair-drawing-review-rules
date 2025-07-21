@@ -53,7 +53,7 @@ public class LengthWidthRuleTest {
         RuleResult result = rule.apply(null,mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("10米以内的展位长度没有每3m预留30mm", result.getReason());
+        assertEquals("10米以内的展位长度("+mockContext.get(DataKeyConstant.LENGTH)+"mm)没有每3m预留30mm", result.getReason());
     }
 
     /**
@@ -66,7 +66,7 @@ public class LengthWidthRuleTest {
         RuleResult result = rule.apply(null,mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("10米以上的展位长度没有预留100mm", result.getReason());
+        assertEquals("10米以上的展位长度("+mockContext.get(DataKeyConstant.LENGTH)+"mm)没有预留100mm", result.getReason());
     }
 
     /**
@@ -79,7 +79,7 @@ public class LengthWidthRuleTest {
         RuleResult result = rule.apply(null,mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("10米以内的展位宽度没有每3m预留30mm", result.getReason());
+        assertEquals("10米以内的展位宽度("+mockContext.get(DataKeyConstant.WIDTH)+"mm)没有每3m预留30mm", result.getReason());
     }
 
     /**
@@ -92,7 +92,7 @@ public class LengthWidthRuleTest {
         RuleResult result = rule.apply(null,mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("10米以上的展位宽度没有预留100mm", result.getReason());
+        assertEquals("10米以上的展位宽度("+mockContext.get(DataKeyConstant.WIDTH)+"mm)没有预留100mm", result.getReason());
     }
 
     /**

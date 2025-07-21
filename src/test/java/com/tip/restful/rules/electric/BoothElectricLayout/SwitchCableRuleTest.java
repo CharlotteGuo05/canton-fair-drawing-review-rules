@@ -49,7 +49,7 @@ public class SwitchCableRuleTest {
 
         RuleResult result = rule.apply(null, mockContext);
         assertFalse(result.isPass());
-        assertEquals("主开关电流不得超过知识库中允许通过最大电流", result.getReason());
+        assertEquals("主开关电流("+mockMain.getMain_i()+"A)不得超过知识库中允许通过最大电流("+mockContext.get(DataKeyConstant.TARGET_MAXINCURRENT)+"A)", result.getReason());
     }
 
     /**
@@ -66,7 +66,7 @@ public class SwitchCableRuleTest {
 
         RuleResult result = rule.apply(null, mockContext);
         assertFalse(result.isPass());
-        assertEquals("回路电流不得超过知识库中最大允许电流", result.getReason());
+        assertEquals("回路电流("+mockBranch.getBranch_i()+"A)不得超过知识库中最大允许电流("+mockContext.get(DataKeyConstant.TARGET_MAXINCURRENT)+"A)", result.getReason());
     }
 
     /**

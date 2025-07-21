@@ -18,7 +18,7 @@ public class StandardBoothRule implements Rule {
             if(companyName.contains(fasciaCompanyName) || companyName == fasciaCompanyName){
                 return RuleResult.pass();
             }else{
-                return RuleResult.fail("特装门楣企业名称不符");
+                return RuleResult.fail("简装门楣上的企业名称("+fasciaCompanyName+")与参展商资料中的企业名称("+companyName+")不符");
             }
         }
         return RuleResult.pass();

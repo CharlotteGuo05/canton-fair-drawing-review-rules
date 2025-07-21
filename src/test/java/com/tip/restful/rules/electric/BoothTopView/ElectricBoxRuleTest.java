@@ -29,53 +29,52 @@ public class ElectricBoxRuleTest {
     public void tearDown() {
         rule = null;
         mockContext = null;
-        mockBox = null;
     }
 
     /**
-     * TC01: 电箱类型不匹配，返回失败
+     * TC01: 电箱类型与目标类型不匹配，返回失败
      */
     @Test
     public void testApply_BoxTypeMismatch_ReturnsFail() {
-        when(mockContext.get(DataKeyConstant.ELECTRIC_BOX)).thenReturn(mockBox);
-        when(mockBox.getBoxType()).thenReturn("A型");
-        when(mockContext.get(DataKeyConstant.TARGET_BOX_TYPE)).thenReturn("B型");
-
+        when(mockBox.getBoxType()).thenReturn("类型A");
         when(mockBox.getBoxNumber()).thenReturn(2);
+        when(mockContext.get(DataKeyConstant.ELECTRIC_BOX)).thenReturn(mockBox);
+        when(mockContext.get(DataKeyConstant.TARGET_BOX_TYPE)).thenReturn("类型B");
+        when(mockContext.get(DataKeyConstant.TARGET_BOX_TYPE_TWO)).thenReturn("类型C");
         when(mockContext.get(DataKeyConstant.TARGET_BOX_NUMBER)).thenReturn("2");
 
         RuleResult result = rule.apply(null, mockContext);
         assertFalse(result.isPass());
-        assertEquals("电箱规格不匹配", result.getReason());
+        assertEquals("电箱规格(类型A)与报图资料中展示用电电箱规格(类型B)或者展位配电系统图中的电箱规格(类型C)不匹配", result.getReason());
     }
 
     /**
-     * TC02: 电箱数量不匹配，返回失败
+     * TC02: 电箱数量不一致，返回失败
      */
     @Test
     public void testApply_BoxNumberMismatch_ReturnsFail() {
-        when(mockContext.get(DataKeyConstant.ELECTRIC_BOX)).thenReturn(mockBox);
-        when(mockBox.getBoxType()).thenReturn("B型");
-        when(mockContext.get(DataKeyConstant.TARGET_BOX_TYPE)).thenReturn("B型");
-
+        when(mockBox.getBoxType()).thenReturn("类型X");
         when(mockBox.getBoxNumber()).thenReturn(1);
-        when(mockContext.get(DataKeyConstant.TARGET_BOX_NUMBER)).thenReturn("2");
+        when(mockContext.get(DataKeyConstant.ELECTRIC_BOX)).thenReturn(mockBox);
+        when(mockContext.get(DataKeyConstant.TARGET_BOX_TYPE)).thenReturn("类型X");
+        when(mockContext.get(DataKeyConstant.TARGET_BOX_TYPE_TWO)).thenReturn("类型X");
+        when(mockContext.get(DataKeyConstant.TARGET_BOX_NUMBER)).thenReturn("3");
 
         RuleResult result = rule.apply(null, mockContext);
         assertFalse(result.isPass());
-        assertEquals("电箱数量不匹配", result.getReason());
+        assertEquals("电箱数量(1)与展位配电系统图中的数量(类型X)不匹配", result.getReason());
     }
 
     /**
-     * TC03: 类型和数量都匹配，返回通过
+     * TC03: 类型和数量全部匹配，返回通过
      */
     @Test
-    public void testApply_AllValid_ReturnsPass() {
-        when(mockContext.get(DataKeyConstant.ELECTRIC_BOX)).thenReturn(mockBox);
-        when(mockBox.getBoxType()).thenReturn("C型");
-        when(mockContext.get(DataKeyConstant.TARGET_BOX_TYPE)).thenReturn("C型");
-
+    public void testApply_AllMatch_ReturnsPass() {
+        when(mockBox.getBoxType()).thenReturn("合格类型");
         when(mockBox.getBoxNumber()).thenReturn(3);
+        when(mockContext.get(DataKeyConstant.ELECTRIC_BOX)).thenReturn(mockBox);
+        when(mockContext.get(DataKeyConstant.TARGET_BOX_TYPE)).thenReturn("合格类型");
+        when(mockContext.get(DataKeyConstant.TARGET_BOX_TYPE_TWO)).thenReturn("合格类型");
         when(mockContext.get(DataKeyConstant.TARGET_BOX_NUMBER)).thenReturn("3");
 
         RuleResult result = rule.apply(null, mockContext);

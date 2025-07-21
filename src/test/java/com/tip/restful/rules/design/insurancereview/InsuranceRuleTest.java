@@ -38,10 +38,10 @@ public class InsuranceRuleTest {
     public void testApply_AllValid_ReturnsPass() {
         when(mockContext.get(DataKeyConstant.INSURANCE_POLICY)).thenReturn("True");
         when(mockContext.get(DataKeyConstant.INSURANCE_AMOUNT)).thenReturn(Arrays.asList("10000"));
-        when(mockContext.get(DataKeyConstant.ACCUMULATED_AMOUNT)).thenReturn(Arrays.asList(10000, 8000, 9000));
-        when(mockContext.get(DataKeyConstant.PREMISES_LIABILITY)).thenReturn("9000");
-        when(mockContext.get(DataKeyConstant.EMPLOYER_LIABILITY)).thenReturn("7000");
-        when(mockContext.get(DataKeyConstant.PERSONAL_INJURY)).thenReturn("8000");
+        when(mockContext.get(DataKeyConstant.ACCUMULATED_AMOUNT)).thenReturn(Arrays.asList(9000, 7000, 8000));
+        when(mockContext.get(DataKeyConstant.PREMISES_LIABILITY)).thenReturn("10000");
+        when(mockContext.get(DataKeyConstant.EMPLOYER_LIABILITY)).thenReturn("8000");
+        when(mockContext.get(DataKeyConstant.PERSONAL_INJURY)).thenReturn("9000");
 
         RuleResult result = rule.apply(null,mockContext);
         assertTrue(result.isPass());
@@ -93,13 +93,13 @@ public class InsuranceRuleTest {
     public void testApply_PremisesLiabilityTooLow_ReturnsFail() {
         when(mockContext.get(DataKeyConstant.INSURANCE_POLICY)).thenReturn("True");
         when(mockContext.get(DataKeyConstant.INSURANCE_AMOUNT)).thenReturn(Arrays.asList("10000"));
-        when(mockContext.get(DataKeyConstant.ACCUMULATED_AMOUNT)).thenReturn(Arrays.asList(5000, 8000, 9000));
-        when(mockContext.get(DataKeyConstant.PREMISES_LIABILITY)).thenReturn("9000");
-        when(mockContext.get(DataKeyConstant.EMPLOYER_LIABILITY)).thenReturn("7000");
-        when(mockContext.get(DataKeyConstant.PERSONAL_INJURY)).thenReturn("8000");
+        when(mockContext.get(DataKeyConstant.ACCUMULATED_AMOUNT)).thenReturn(Arrays.asList(9000, 7000, 8000));
+        when(mockContext.get(DataKeyConstant.PREMISES_LIABILITY)).thenReturn("5000");
+        when(mockContext.get(DataKeyConstant.EMPLOYER_LIABILITY)).thenReturn("8000");
+        when(mockContext.get(DataKeyConstant.PERSONAL_INJURY)).thenReturn("9000");
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("场地责任累计金额小于场地责任额度", result.getReason());
+        assertEquals("场地责任累计金额大于场地责任额度", result.getReason());
     }
 }

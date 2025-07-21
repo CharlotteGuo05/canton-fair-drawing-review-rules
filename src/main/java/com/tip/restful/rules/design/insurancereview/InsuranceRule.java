@@ -39,16 +39,16 @@ public class InsuranceRule implements Rule {
         int personalInjury = Integer.parseInt((String) context.get(DataKeyConstant.PERSONAL_INJURY));
 
 
-        if (accumulatedAmount.get(0) < premisesLiability) {
-            return RuleResult.fail("场地责任累计金额小于场地责任额度");
+        if (accumulatedAmount.get(0) > premisesLiability) {
+            return RuleResult.fail("场地责任累计金额大于场地责任额度");
         }
 
-        if (accumulatedAmount.get(1) < employerLiability) {
-            return RuleResult.fail("雇员责任累计金额小于雇员责任额度");
+        if (accumulatedAmount.get(1) > employerLiability) {
+            return RuleResult.fail("雇员责任累计金额大于雇员责任额度");
         }
 
-        if (accumulatedAmount.get(2) < personalInjury) {
-            return RuleResult.fail("第三者的人身损害累计金额小于第三者人员责任责任额度");
+        if (accumulatedAmount.get(2) > personalInjury) {
+            return RuleResult.fail("第三者的人身损害累计金额大于第三者人员责任责任额度");
         }
 
         return RuleResult.pass();

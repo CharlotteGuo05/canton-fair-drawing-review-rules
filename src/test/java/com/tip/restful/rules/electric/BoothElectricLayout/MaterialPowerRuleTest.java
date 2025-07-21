@@ -47,7 +47,7 @@ public class MaterialPowerRuleTest {
 
         RuleResult result = rule.apply(null, mockContext);
         assertFalse(result.isPass());
-        assertEquals("电缆型号不在清单中", result.getReason());
+        assertEquals("电缆型号(ABC)不在清单中", result.getReason());
     }
 
     /**
@@ -62,7 +62,7 @@ public class MaterialPowerRuleTest {
 
         RuleResult result = rule.apply(null, mockContext);
         assertFalse(result.isPass());
-        assertEquals("电缆规格不得小于3*2.5mm²", result.getReason());
+        assertEquals("电缆规格(6mm²)不得小于3*2.5mm²", result.getReason());
     }
 
     /**
@@ -95,7 +95,7 @@ public class MaterialPowerRuleTest {
 
         RuleResult result = rule.apply(null, mockContext);
         assertFalse(result.isPass());
-        assertEquals("主电缆规格不得小于分电缆规格", result.getReason());
+        assertEquals("主电缆规格(8mm²)不得小于分电缆规格(10mm²)", result.getReason());
     }
 
     /**
@@ -116,7 +116,7 @@ public class MaterialPowerRuleTest {
 
         RuleResult result = rule.apply(null, mockContext);
         assertFalse(result.isPass());
-        assertEquals("容量不等于数量*功率", result.getReason());
+        assertEquals("容量(150W)不等于数量(2)*功率(100W)", result.getReason());
     }
 
     /**

@@ -12,13 +12,16 @@ public class TileStandardBoothRule implements Rule {
         String hasBooth = (String)context.get(DataKeyConstant.HAS_BOOTH);
 
         String tileCompanyName = (String) context.get(DataKeyConstant.TILE_COMPANY_NAME);
+
+        //简装&&未出现企业名称 -- 合格
+        //简装&&出现企业名称&&含有统一 -- 合格
         if("简装".equals(type)){
-            if("False".equals(hasBooth)){
-                //哪里含有？
+            if("True".equals(hasBooth)){
+                //图片中含有就可以
                 if(tileCompanyName.contains("大会统一装搭")){
                     return RuleResult.pass();
                 }else{
-                    return RuleResult.fail("未含有大会统一装搭");
+                    return RuleResult.fail("简装门楣出现企业名称，但图中未含有大会统一装搭");
                 }
             }
 

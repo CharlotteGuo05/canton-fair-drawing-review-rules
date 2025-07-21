@@ -18,14 +18,14 @@ public class SwitchCableRule implements Rule {
         //I2：主开关电缆规格 --> 知识库“允许通过最大电流”。根据知识库结构来讨论如何实现。
         int mainI2=Integer.parseInt((String)context.get(DataKeyConstant.TARGET_MAXINCURRENT));
 
-        if(mainI1>mainI2) return RuleResult.fail("主开关电流不得超过知识库中允许通过最大电流");
+        if(mainI1>mainI2) return RuleResult.fail("主开关电流("+mainI1+"A)不得超过知识库中允许通过最大电流("+mainI2+"A)");
 
         for(BranchInfo branch:branches){
             int branchI1=branch.getBranch_i();
             int branchCableSize=branch.getCable_size();
             int branchI2=Integer.parseInt((String)context.get(DataKeyConstant.TARGET_MAXINCURRENT));
 
-            if(branchI1>branchI2) return RuleResult.fail("回路电流不得超过知识库中最大允许电流");
+            if(branchI1>branchI2) return RuleResult.fail("回路电流("+branchI1+"A)不得超过知识库中最大允许电流("+branchI2+"A)");
         }
 
 

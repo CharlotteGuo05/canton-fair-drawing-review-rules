@@ -26,7 +26,7 @@ public class GreenRule implements Rule {
         if ("A类".equals(type)) {
             for (Material material : materials) {
                 if (forbidden.contains(material.getName()) || wood.contains(material.getName())) {
-                    return RuleResult.fail("不得出现该类材料");
+                    return RuleResult.fail("不得出现该类材料:"+material.getName());
                 }
             }
         }else if("B类".equals(type)){
@@ -34,7 +34,7 @@ public class GreenRule implements Rule {
                 if("True".equals(material.isMovable())){
                     if(material.getLength()*material.getWidth()>7500000) return RuleResult.fail("可移动材料面积不可以大于7500mm");
                 }
-                if(forbidden.contains(material.getName())) return RuleResult.fail("不得出现该类材料");
+                if(forbidden.contains(material.getName())) return RuleResult.fail("不得出现该类材料:"+material.getName());
             }
         }
 

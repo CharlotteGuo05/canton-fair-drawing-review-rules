@@ -67,6 +67,6 @@ public class BasicPicRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("有材料不在阻燃/难燃材料清单中", result.getReason());
+        assertEquals("材料(易燃布料)不在阻燃/难燃材料清单中", result.getReason());
     }
 }

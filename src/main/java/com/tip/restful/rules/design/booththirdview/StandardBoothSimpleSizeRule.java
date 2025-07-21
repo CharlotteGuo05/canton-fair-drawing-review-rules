@@ -20,11 +20,11 @@ public class StandardBoothSimpleSizeRule implements Rule {
 
 
         if (length > 2970 || width > 2970) {
-            return RuleResult.fail("长度、宽度均不得大于2970mm");
+            return RuleResult.fail("长度("+length+")、宽度("+width+")均不得大于2970mm");
         }
 
         if (frontHeight != 2400 || sideHeight != 2400) {
-            return RuleResult.fail("单层展位高度不为2.4m");
+            return RuleResult.fail("单层展位高度("+frontHeight+")不为2.4m");
         }
 
         return RuleResult.pass();

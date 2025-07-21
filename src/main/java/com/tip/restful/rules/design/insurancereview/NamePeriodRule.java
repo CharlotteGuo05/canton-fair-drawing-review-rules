@@ -30,12 +30,12 @@ public class NamePeriodRule implements Rule {
 
         // 1. 被保险人信息校验
         if (!(insurance != null && (insurance.equals(targetCompany) || insurance.equals(specialBoothName)))) {
-            return RuleResult.fail("被保险人信息不匹配");
+            return RuleResult.fail("被保险人信息("+insurance+")与企业名称或特装施工服务商名称不匹配");
         }
 
         // 2. 展位号校验
         if (!(boothID != null && boothID.equals(insuranceBoothID))) {
-            return RuleResult.fail("展位号不匹配");
+            return RuleResult.fail("页面或附表清单中的展位号与基本信息中的展位号不匹配");
         }
 
         // 3. 保险期限校验
@@ -52,7 +52,7 @@ public class NamePeriodRule implements Rule {
             LocalDateTime iEndTime = LocalDateTime.parse(insurancePeriod.get(1), formatter);
 
             if (iStartTime.isAfter(requiredStart) || iEndTime.isBefore(requiredEnd)) {
-                return RuleResult.fail("保险期限不足");
+                return RuleResult.fail("保险期限（"+iStartTime.format(formatter)+"至"+iEndTime.format(formatter)+"）不足展会时间加前三日布展期");
             }
         } catch (Exception e) {
             return RuleResult.fail("保险时间格式错误或缺失");

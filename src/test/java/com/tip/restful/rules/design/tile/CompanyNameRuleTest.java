@@ -3,7 +3,6 @@ package com.tip.restful.rules.design.tile;
 import com.tip.restful.RuleContext;
 import com.tip.restful.RuleResult;
 import com.tip.restful.constant.DataKeyConstant;
-import com.tip.restful.rules.design.tile.CompanyNameRule;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +36,7 @@ public class CompanyNameRuleTest {
         when(mockContext.get(DataKeyConstant.TILE_COMPANY_NAME)).thenReturn("AB公司");
         when(mockContext.get(DataKeyConstant.COMPANY_NAME)).thenReturn("AB技术有限公司");
 
-        RuleResult result = rule.apply(null,mockContext);
+        RuleResult result = rule.apply(null, mockContext);
         assertTrue(result.isPass());
     }
 
@@ -49,7 +48,7 @@ public class CompanyNameRuleTest {
         when(mockContext.get(DataKeyConstant.TILE_COMPANY_NAME)).thenReturn("AB技术有限公司");
         when(mockContext.get(DataKeyConstant.COMPANY_NAME)).thenReturn("AB技术有限公司");
 
-        RuleResult result = rule.apply(null,mockContext);
+        RuleResult result = rule.apply(null, mockContext);
         assertTrue(result.isPass());
     }
 
@@ -61,7 +60,7 @@ public class CompanyNameRuleTest {
         when(mockContext.get(DataKeyConstant.TILE_COMPANY_NAME)).thenReturn(null);
         when(mockContext.get(DataKeyConstant.COMPANY_NAME)).thenReturn("AB技术有限公司");
 
-        RuleResult result = rule.apply(null,mockContext);
+        RuleResult result = rule.apply(null, mockContext);
         assertTrue(result.isPass());
     }
 
@@ -73,8 +72,8 @@ public class CompanyNameRuleTest {
         when(mockContext.get(DataKeyConstant.TILE_COMPANY_NAME)).thenReturn("BC公司");
         when(mockContext.get(DataKeyConstant.COMPANY_NAME)).thenReturn("AB技术有限公司");
 
-        RuleResult result = rule.apply(null,mockContext);
+        RuleResult result = rule.apply(null, mockContext);
         assertFalse(result.isPass());
-        assertEquals("公司名称不符", result.getReason());
+        assertEquals("公司名称(BC)与报备的参展商资料-企业名称(AB技术)不符", result.getReason());
     }
 }

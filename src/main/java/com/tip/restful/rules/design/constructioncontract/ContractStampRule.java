@@ -25,8 +25,8 @@ public class ContractStampRule implements Rule {
         String targetCompany = (String) context.get(DataKeyConstant.COMPANY_NAME);
         String specialBoothName = (String) context.get(DataKeyConstant.SPECIAL_BOOTH_NAME);
 
-        if(partyA == null || partyA.isEmpty() || !partyA.equals(targetCompany)) return RuleResult.fail("甲方信息不匹配");
-        if(partyB == null || partyB.isEmpty() || !partyB.equals(specialBoothName)) return RuleResult.fail("乙方信息不匹配");
+        if(partyA == null || partyA.isEmpty() || !partyA.equals(targetCompany)) return RuleResult.fail("甲方信息("+partyA+")与企业名称("+targetCompany+")不匹配");
+        if(partyB == null || partyB.isEmpty() || !partyB.equals(specialBoothName)) return RuleResult.fail("乙方信息("+partyB+")与特装施工服务商名称("+specialBoothName+")不匹配");
 
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -41,10 +41,10 @@ public class ContractStampRule implements Rule {
             LocalDateTime contractEnd = LocalDateTime.parse(contractPeriod.get("end"), formatter);
 
             if (contractStart.isAfter(requiredStart) || contractEnd.isBefore(requiredEnd)) {
-                return RuleResult.fail("保险期限不足");
+                return RuleResult.fail("合同期限("+contractStart.format(formatter)+"至"+contractEnd.format(formatter)+")不足展会时间加上前三日筹展期");
             }
         } catch (Exception e) {
-            return RuleResult.fail("保险时间格式错误或缺失");
+            return RuleResult.fail("合同时间格式错误或缺失");
         }
 
         return RuleResult.pass();

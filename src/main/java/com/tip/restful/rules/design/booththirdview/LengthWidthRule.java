@@ -27,15 +27,15 @@ public class LengthWidthRule implements Rule {
            int targetWidth = Integer.parseInt((String) context.get(DataKeyConstant.TARGET_WIDTH));
 
            if(targetLength <= 10000 ){
-               if(length!=(targetLength-(targetLength/3000)*30)) return RuleResult.fail("10米以内的展位长度没有每3m预留30mm");
+               if(length!=(targetLength-(targetLength/3000)*30)) return RuleResult.fail("10米以内的展位长度("+length+"mm)没有每3m预留30mm");
            }else if(targetLength>10000){
-               if(length!=(targetLength-100)) return RuleResult.fail("10米以上的展位长度没有预留100mm");
+               if(length!=(targetLength-100)) return RuleResult.fail("10米以上的展位长度("+length+"mm)没有预留100mm");
            }
 
            if(targetWidth <= 10000 ){
-                if(width!=(targetWidth-(targetWidth/3000)*30)) return RuleResult.fail("10米以内的展位宽度没有每3m预留30mm");
+                if(width!=(targetWidth-(targetWidth/3000)*30)) return RuleResult.fail("10米以内的展位宽度("+width+"mm)没有每3m预留30mm");
             }else if(targetWidth>10000){
-               if(width!=(targetWidth-100)) return RuleResult.fail("10米以上的展位宽度没有预留100mm");
+               if(width!=(targetWidth-100)) return RuleResult.fail("10米以上的展位宽度("+width+"mm)没有预留100mm");
            }
 
 

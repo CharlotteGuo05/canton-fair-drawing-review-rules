@@ -14,7 +14,7 @@ public class InsuranceCompanyRule implements Rule {
         if(insurance.equals(targetInsurance))
             return RuleResult.pass();
 
-        return RuleResult.fail("保险清单企业名称不合规");
+        return RuleResult.fail("保险清单中企业名称("+insurance+")与参展商资料-企业名称("+targetInsurance+")不匹配");
     }
 
     @Override

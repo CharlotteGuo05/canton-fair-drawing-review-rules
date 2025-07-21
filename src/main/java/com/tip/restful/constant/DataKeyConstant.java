@@ -167,6 +167,7 @@ public class DataKeyConstant {
 
     //数据库
     public static final String TARGET_BOX_TYPE="targetBoxType"; //报图资料-展示用电电箱规格
+    public static final String TARGET_BOX_TYPE_TWO = "targetBoxTypeTwo"; //"展位配电系统图"中的电箱规格
     public static final String TARGET_BOX_NUMBER="targetBoxNumber";//"展位配电系统图"中的电箱数量
 
 

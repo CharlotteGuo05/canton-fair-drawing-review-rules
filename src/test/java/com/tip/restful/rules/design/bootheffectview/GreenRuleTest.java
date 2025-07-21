@@ -45,7 +45,7 @@ public class GreenRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("不得出现该类材料", result.getReason());
+        assertEquals("不得出现该类材料:"+m1.getName(), result.getReason());
     }
 
     /**
@@ -81,7 +81,7 @@ public class GreenRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("不得出现该类材料", result.getReason());
+        assertEquals("不得出现该类材料:"+m1.getName(), result.getReason());
     }
 
     /**

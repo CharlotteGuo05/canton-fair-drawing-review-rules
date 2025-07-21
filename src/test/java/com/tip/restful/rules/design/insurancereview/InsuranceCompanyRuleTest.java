@@ -51,6 +51,6 @@ public class InsuranceCompanyRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("保险清单企业名称不合规", result.getReason());
+        assertEquals("保险清单中企业名称("+mockContext.get(DataKeyConstant.INSURANCE_COMPANY)+")与参展商资料-企业名称("+mockContext.get(DataKeyConstant.COMPANY_NAME)+")不匹配", result.getReason());
     }
 }

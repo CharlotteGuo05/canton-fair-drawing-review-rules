@@ -12,7 +12,7 @@ public class AreaRule implements Rule {
     @Override
     public RuleResult apply(String imageId,RuleContext context) {
         Tile tileArea =(Tile) context.get(DataKeyConstant.TILE_AREA);
-        if(tileArea.getArea() > 2976800) return RuleResult.fail("单片瓷砖面积不得超过122 cm *244 cm");
+        if(tileArea.getArea() > 2976800) return RuleResult.fail("图中单片瓷砖面积为"+tileArea.getArea()+"mm²,超过了122cm*244 cm");
 
         return RuleResult.pass();
     }

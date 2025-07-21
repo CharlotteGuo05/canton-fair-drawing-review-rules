@@ -66,7 +66,7 @@ public class ContractStampRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("甲方信息不匹配", result.getReason());
+        assertEquals("甲方信息("+mockContext.get(DataKeyConstant.PARTY_A)+")与企业名称("+mockContext.get(DataKeyConstant.COMPANY_NAME)+")不匹配", result.getReason());
     }
 
     /**
@@ -81,7 +81,7 @@ public class ContractStampRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("乙方信息不匹配", result.getReason());
+        assertEquals("乙方信息("+mockContext.get(DataKeyConstant.PARTY_B)+")与特装施工服务商名称("+mockContext.get(DataKeyConstant.SPECIAL_BOOTH_NAME)+")不匹配", result.getReason());
     }
 
     /**
@@ -104,7 +104,7 @@ public class ContractStampRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("保险期限不足", result.getReason());
+        assertEquals("合同期限(2024-10-17 00:00:00至2024-10-20 00:00:00)不足展会时间加上前三日筹展期", result.getReason());
     }
 
     /**
@@ -127,7 +127,7 @@ public class ContractStampRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("保险期限不足", result.getReason());
+        assertEquals("合同期限(2024-10-15 00:00:00至2024-10-19 00:00:00)不足展会时间加上前三日筹展期", result.getReason());
     }
 
     /**
@@ -150,6 +150,6 @@ public class ContractStampRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("保险时间格式错误或缺失", result.getReason());
+        assertEquals("合同时间格式错误或缺失", result.getReason());
     }
 }

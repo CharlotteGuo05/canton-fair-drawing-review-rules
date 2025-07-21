@@ -62,7 +62,7 @@ public class layoutSystemRuleTest {
 
         RuleResult result = rule.apply(null, mockContext);
         assertFalse(result.isPass());
-        assertEquals("回路灯具数量不得超过25盏", result.getReason());
+        assertEquals("回路灯具数量("+mockBranch.getNumber()+")不得超过25盏", result.getReason());
     }
 
     /**
@@ -146,7 +146,7 @@ public class layoutSystemRuleTest {
 
         RuleResult result = rule.apply(null, mockContext);
         assertFalse(result.isPass());
-        assertEquals("回路电流不得超过知识库中最大允许电流", result.getReason());
+        assertEquals("回路电流("+(mockBranch.getCapacity()/mockMainInfo.getMainV())+"A)不得超过知识库中最大允许电流("+mockContext.get(DataKeyConstant.TARGET_MAXINCURRENT)+"A)", result.getReason());
     }
 
     /**

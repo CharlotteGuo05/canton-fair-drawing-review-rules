@@ -17,7 +17,7 @@ public class layoutSystemRule implements Rule {
         //每一个回路的灯具数量不得超过25盏
         for(BranchInfo branch : branches){
             int branchNumber = branch.getNumber();
-            if(branchNumber > 25) return RuleResult.fail("回路灯具数量不得超过25盏");
+            if(branchNumber > 25) return RuleResult.fail("回路灯具数量("+branchNumber+")不得超过25盏");
         }
 
         //接地判断
@@ -52,7 +52,7 @@ public class layoutSystemRule implements Rule {
             int mainVoltage= main.getMainV();
             int maxInCurrent = branchCapacity/mainVoltage;
 
-            if(maxInCurrent > target_maxInCurrent) return RuleResult.fail("回路电流不得超过知识库中最大允许电流");
+            if(maxInCurrent > target_maxInCurrent) return RuleResult.fail("回路电流("+maxInCurrent+"A)不得超过知识库中最大允许电流("+target_maxInCurrent+"A)");
         }
 
         return null;

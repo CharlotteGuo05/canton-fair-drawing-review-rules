@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -63,7 +64,7 @@ public class NamePeriodRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("被保险人信息不匹配", result.getReason());
+        assertEquals("被保险人信息("+mockContext.get(DataKeyConstant.INSURANCE_COMPANY)+")与企业名称或特装施工服务商名称不匹配", result.getReason());
     }
 
     /**
@@ -80,7 +81,7 @@ public class NamePeriodRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("展位号不匹配", result.getReason());
+        assertEquals("页面或附表清单中的展位号与基本信息中的展位号不匹配", result.getReason());
     }
 
     /**
@@ -102,6 +103,6 @@ public class NamePeriodRuleTest {
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("保险期限不足", result.getReason());
+        assertEquals("保险期限（2024-10-31 00:00:00至2024-11-03 23:59:59）不足展会时间加前三日布展期", result.getReason());
     }
 }

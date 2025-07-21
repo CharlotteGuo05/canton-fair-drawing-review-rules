@@ -51,7 +51,7 @@ public class HeightRuleTest {
         RuleResult result = rule.apply(null, mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("简装单层展位高度大于等于2.4m", result.getReason());
+        assertEquals("简装单层展位高度(正视图："+mockContext.get(DataKeyConstant.FRONT_HEIGHT)+"mm 或侧视图："+mockContext.get(DataKeyConstant.SIDE_HEIGHT)+"mm)大于等于2.4m", result.getReason());
     }
 
     /**
@@ -64,7 +64,7 @@ public class HeightRuleTest {
         RuleResult result = rule.apply(null, mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("简装单层展位高度大于等于2.4m", result.getReason());
+        assertEquals("简装单层展位高度(正视图："+mockContext.get(DataKeyConstant.FRONT_HEIGHT)+"mm 或侧视图："+mockContext.get(DataKeyConstant.SIDE_HEIGHT)+"mm)大于等于2.4m", result.getReason());
     }
 
     /**
@@ -77,7 +77,7 @@ public class HeightRuleTest {
         RuleResult result = rule.apply(null, mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("特装双层展位高度不等于6m", result.getReason());
+        assertEquals("特装双层展位高度(正视图："+mockContext.get(DataKeyConstant.FRONT_HEIGHT)+"mm 或侧视图："+mockContext.get(DataKeyConstant.SIDE_HEIGHT)+"mm)不等于6m", result.getReason());
     }
 
     /**
@@ -90,7 +90,7 @@ public class HeightRuleTest {
         RuleResult result = rule.apply(null, mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("特装单层展位高度不等于2.4m", result.getReason());
+        assertEquals("特装单层展位高度(正视图："+mockContext.get(DataKeyConstant.FRONT_HEIGHT)+"mm 或侧视图："+mockContext.get(DataKeyConstant.SIDE_HEIGHT)+"mm)不等于2.4m", result.getReason());
     }
 
     /**

@@ -20,7 +20,7 @@ public class BoothIDRule implements Rule {
         if(DrawingCompanyID.equals(companyID)) return RuleResult.pass();
 
 
-        return RuleResult.fail("参展企业不与展位号对应");
+        return RuleResult.fail("参展企业ID与报图单中的企业ID不一致");
     }
 
     @Override

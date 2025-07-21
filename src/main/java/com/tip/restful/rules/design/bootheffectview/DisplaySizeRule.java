@@ -20,9 +20,9 @@ public class DisplaySizeRule implements Rule {
         if(width == -1 && height == -1){
             return RuleResult.pass();
         }else if(2500 <= height && height <= 3000){
-            if(width > 2500) return RuleResult.fail("宽高不符合要求");
+            if(width > 2500) return RuleResult.fail("高("+height+"mm)为2500-3000mm, 宽("+width+"mm)不得大于2500m");
         }else if(2500 <= width && width <= 3000){
-            if(height > 2500) return RuleResult.fail("宽高不符合要求");
+            if(height > 2500) return RuleResult.fail("宽("+width+"mm)为2500m-3000m, 高("+height+"mm)不得大于2500m");
         }
         return RuleResult.pass();
     }

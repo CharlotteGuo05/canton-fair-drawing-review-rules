@@ -20,8 +20,8 @@ public class StampRule implements Rule {
         String companyName = (String)context.get(DataKeyConstant.COMPANY_NAME);
         //特装施工服务商资料-特装施工服务商名称
         String specialServiceName = (String)context.get(DataKeyConstant.SPECIAL_BOOTH_NAME);
-        if(!partyA.equals(companyName)) return RuleResult.fail("印章中甲方名称不匹配");
-        if(!partyB.equals(specialServiceName)) return RuleResult.fail("印章中乙方名称不匹配");
+        if(!partyA.equals(companyName)) return RuleResult.fail("印章中甲方名称("+partyA+")与参展商资料中的企业名称("+companyName+")不匹配");
+        if(!partyB.equals(specialServiceName)) return RuleResult.fail("印章中乙方名称("+partyB+")与特装施工服务商资料中的特装施工服务商名称("+specialServiceName+")不匹配");
 
 
         List<String> signDates = stamp.getSignDate();
@@ -31,7 +31,7 @@ public class StampRule implements Rule {
         LocalDateTime exhibitionDate = LocalDateTime.parse(exhibitionStart, formatter);
         for(String date : signDates){
             LocalDateTime signDate = LocalDateTime.parse(date, formatter);
-            if(!signDate.isBefore(exhibitionDate)) return RuleResult.fail("合同签署日期不得晚于该年该期展会的最早开始日期");
+            if(!signDate.isBefore(exhibitionDate)) return RuleResult.fail("合同签署日期("+signDate.format(formatter)+")不得晚于该年该期展会的最早开始日期("+exhibitionDate.format(formatter)+")");
 
         }
 
@@ -39,7 +39,7 @@ public class StampRule implements Rule {
 
 
 
-        return null;
+        return RuleResult.pass();
     }
 
     @Override

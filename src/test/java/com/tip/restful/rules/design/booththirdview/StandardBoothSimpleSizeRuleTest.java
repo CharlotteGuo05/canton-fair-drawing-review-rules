@@ -10,6 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import javax.xml.crypto.Data;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
@@ -53,7 +55,7 @@ public class StandardBoothSimpleSizeRuleTest {
         RuleResult result = rule.apply(null,mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("长度、宽度均不得大于2970mm", result.getReason());
+        assertEquals("长度("+mockContext.get(DataKeyConstant.LENGTH) +")、宽度("+mockContext.get(DataKeyConstant.WIDTH)+")均不得大于2970mm", result.getReason());
     }
 
     /**
@@ -66,7 +68,7 @@ public class StandardBoothSimpleSizeRuleTest {
         RuleResult result = rule.apply(null,mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("长度、宽度均不得大于2970mm", result.getReason());
+        assertEquals("长度("+mockContext.get(DataKeyConstant.LENGTH) +")、宽度("+mockContext.get(DataKeyConstant.WIDTH)+")均不得大于2970mm", result.getReason());
     }
 
     /**
@@ -79,7 +81,7 @@ public class StandardBoothSimpleSizeRuleTest {
         RuleResult result = rule.apply(null,mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("单层展位高度不为2.4m", result.getReason());
+        assertEquals("单层展位高度("+mockContext.get(DataKeyConstant.FRONT_HEIGHT)+")不为2.4m", result.getReason());
     }
 
     /**
@@ -92,7 +94,7 @@ public class StandardBoothSimpleSizeRuleTest {
         RuleResult result = rule.apply(null,mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("单层展位高度不为2.4m", result.getReason());
+        assertEquals("单层展位高度("+mockContext.get(DataKeyConstant.FRONT_HEIGHT)+")不为2.4m", result.getReason());
     }
 
     /**

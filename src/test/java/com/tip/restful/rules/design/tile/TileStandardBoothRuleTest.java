@@ -46,12 +46,12 @@ public class TileStandardBoothRuleTest {
     @Test
     public void testApply_Simple_NoBooth_MissingUnifiedText_ReturnsFail() {
         when(mockContext.get(DataKeyConstant.DRAWING_KIND)).thenReturn("简装");
-        when(mockContext.get(DataKeyConstant.HAS_BOOTH)).thenReturn("False");
+        when(mockContext.get(DataKeyConstant.HAS_BOOTH)).thenReturn("True");
         when(mockContext.get(DataKeyConstant.TILE_COMPANY_NAME)).thenReturn("某企业名称");
 
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("未含有大会统一装搭", result.getReason());
+        assertEquals("简装门楣出现企业名称，但图中未含有大会统一装搭", result.getReason());
     }
 
     /**
@@ -60,7 +60,7 @@ public class TileStandardBoothRuleTest {
     @Test
     public void testApply_Simple_HasBooth_ReturnsPass() {
         when(mockContext.get(DataKeyConstant.DRAWING_KIND)).thenReturn("简装");
-        when(mockContext.get(DataKeyConstant.HAS_BOOTH)).thenReturn("True");
+        when(mockContext.get(DataKeyConstant.HAS_BOOTH)).thenReturn("False");
 
         RuleResult result = rule.apply(null,mockContext);
         assertTrue(result.isPass());

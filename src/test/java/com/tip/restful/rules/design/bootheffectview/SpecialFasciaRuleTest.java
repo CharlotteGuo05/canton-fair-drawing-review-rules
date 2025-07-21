@@ -66,6 +66,6 @@ public class SpecialFasciaRuleTest {
         RuleResult result = rule.apply(null,mockContext);
 
         assertFalse(result.isPass());
-        assertEquals("特装门楣企业名称不符", result.getReason());
+        assertEquals("特装门楣上的企业名称("+mockContext.get(DataKeyConstant.FASCIA_COMPANY_NAME)+")与参展商资料中的企业名称("+mockContext.get(DataKeyConstant.COMPANY_NAME)+")不符", result.getReason());
     }
 }

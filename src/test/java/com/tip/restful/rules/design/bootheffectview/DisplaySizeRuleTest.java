@@ -78,7 +78,7 @@ public class DisplaySizeRuleTest {
         when(mockContext.get(DataKeyConstant.DISPLAY_WIDTH)).thenReturn("3000");
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("宽高不符合要求", result.getReason());
+        assertEquals("高("+mockContext.get(DataKeyConstant.DISPLAY_HEIGHT)+"mm)为2500-3000mm, 宽("+mockContext.get(DataKeyConstant.DISPLAY_WIDTH)+"mm)不得大于2500m", result.getReason());
     }
 
 
@@ -91,7 +91,7 @@ public class DisplaySizeRuleTest {
         when(mockContext.get(DataKeyConstant.DISPLAY_HEIGHT)).thenReturn("3000");
         RuleResult result = rule.apply(null,mockContext);
         assertFalse(result.isPass());
-        assertEquals("宽高不符合要求", result.getReason());
+        assertEquals("高("+mockContext.get(DataKeyConstant.DISPLAY_HEIGHT)+"mm)为2500-3000mm, 宽("+mockContext.get(DataKeyConstant.DISPLAY_WIDTH)+"mm)不得大于2500m", result.getReason());
     }
 
 

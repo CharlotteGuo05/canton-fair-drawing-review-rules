@@ -18,7 +18,7 @@ public class CompanyNameRule implements Rule {
         if(normalizedCompany.contains(normalizedTileCompany) || normalizedTileCompany.contains(normalizedCompany)) return RuleResult.pass();
 
 
-        return RuleResult.fail("公司名称不符");
+        return RuleResult.fail("公司名称("+normalizedTileCompany+")与报备的参展商资料-企业名称("+normalizedCompany+")不符");
     }
 
     @Override
