@@ -13,8 +13,7 @@ public class StandardBoothSimpleSizeRule implements Rule {
         String type = (String) context.get(DataKeyConstant.DRAWING_KIND);
         if (!"简装".equals(type)) return RuleResult.pass("不是简装");
 
-        int frontHeight = Integer.parseInt((String) context.get(DataKeyConstant.FRONT_HEIGHT));
-        int sideHeight = Integer.parseInt((String) context.get(DataKeyConstant.SIDE_HEIGHT));
+        int height = Integer.parseInt((String) context.get(DataKeyConstant.HEIGHT));
         int length = Integer.parseInt((String) context.get(DataKeyConstant.LENGTH));
         int width = Integer.parseInt((String) context.get(DataKeyConstant.WIDTH));
 
@@ -23,8 +22,8 @@ public class StandardBoothSimpleSizeRule implements Rule {
             return RuleResult.fail("长度("+length+")、宽度("+width+")均不得大于2970mm");
         }
 
-        if (frontHeight != 2400 || sideHeight != 2400) {
-            return RuleResult.fail("单层展位高度("+frontHeight+")不为2.4m");
+        if (height != 2400 ) {
+            return RuleResult.fail("单层展位高度("+height+")不为2.4m");
         }
 
         return RuleResult.pass();

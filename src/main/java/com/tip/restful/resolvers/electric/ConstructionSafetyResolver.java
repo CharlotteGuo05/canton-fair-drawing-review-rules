@@ -69,7 +69,7 @@ public class ConstructionSafetyResolver implements DataResolver {
             return safetyStamp;
         }
     }
-    public class StampInfo {
+    public static class StampInfo {
         public String partyA;
         public String partyB;
         public List<String> signDate;

@@ -35,8 +35,7 @@ public class Main {
         context.put(DataKeyConstant.SECOND_EXHIBITION, "1");
         context.put(DataKeyConstant.ALLOW_SECOND, "1");
         context.put(DataKeyConstant.DRAWING_KIND, "简装");
-        context.put(DataKeyConstant.FRONT_HEIGHT, "6000");
-        context.put(DataKeyConstant.SIDE_HEIGHT, "6000");
+        context.put(DataKeyConstant.HEIGHT, "6000");
 
 
         // 执行

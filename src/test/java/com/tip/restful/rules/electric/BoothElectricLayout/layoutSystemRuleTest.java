@@ -3,9 +3,7 @@ package com.tip.restful.rules.electric.BoothElectricLayout;
 import com.tip.restful.RuleContext;
 import com.tip.restful.RuleResult;
 import com.tip.restful.constant.DataKeyConstant;
-import com.tip.restful.rules.electric.BoothElectricLayout.layoutSystemRule.BranchInfo;
-import com.tip.restful.rules.electric.BoothElectricLayout.layoutSystemRule.MainInfo;
-import com.tip.restful.rules.electric.BoothElectricLayout.layoutSystemRule.electriclayout;
+import com.tip.restful.resolvers.electric.BoothElectricLayoutResolver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,17 +18,17 @@ public class layoutSystemRuleTest {
 
     private layoutSystemRule rule;
     private RuleContext mockContext;
-    private MainInfo mockMainInfo;
-    private BranchInfo mockBranch;
-    private electriclayout mockLayout;
+    private BoothElectricLayoutResolver.MainInfo mockMainInfo;
+    private BoothElectricLayoutResolver.BranchInfo mockBranch;
+    private BoothElectricLayoutResolver.electriclayout mockLayout;
 
     @Before
     public void setUp() {
         rule = new layoutSystemRule();
         mockContext = Mockito.mock(RuleContext.class);
-        mockMainInfo = Mockito.mock(MainInfo.class);
-        mockBranch = Mockito.mock(BranchInfo.class);
-        mockLayout = Mockito.mock(electriclayout.class);
+        mockMainInfo = Mockito.mock(BoothElectricLayoutResolver.MainInfo.class);
+        mockBranch = Mockito.mock(BoothElectricLayoutResolver.BranchInfo.class);
+        mockLayout = Mockito.mock(BoothElectricLayoutResolver.electriclayout.class);
     }
 
     @After

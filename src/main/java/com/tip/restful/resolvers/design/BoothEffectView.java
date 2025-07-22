@@ -119,7 +119,7 @@ public class BoothEffectView implements DataResolver {
         }
     }
 
-    public class Material{
+    public static class Material{
         private String name;
         private String movable;
         private int width;

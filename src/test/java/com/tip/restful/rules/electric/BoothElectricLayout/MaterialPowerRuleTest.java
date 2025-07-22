@@ -3,8 +3,7 @@ package com.tip.restful.rules.electric.BoothElectricLayout;
 import com.tip.restful.RuleContext;
 import com.tip.restful.RuleResult;
 import com.tip.restful.constant.DataKeyConstant;
-import com.tip.restful.rules.electric.BoothElectricLayout.MaterialPowerRule.BranchInfo;
-import com.tip.restful.rules.electric.BoothElectricLayout.MaterialPowerRule.MainInfo;
+import com.tip.restful.resolvers.electric.BoothElectricLayoutResolver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,15 +18,15 @@ public class MaterialPowerRuleTest {
 
     private MaterialPowerRule rule;
     private RuleContext mockContext;
-    private MainInfo mockMain;
-    private BranchInfo mockBranch;
+    private BoothElectricLayoutResolver.MainInfo mockMain;
+    private BoothElectricLayoutResolver.BranchInfo mockBranch;
 
     @Before
     public void setUp() {
         rule = new MaterialPowerRule();
         mockContext = Mockito.mock(RuleContext.class);
-        mockMain = Mockito.mock(MainInfo.class);
-        mockBranch = Mockito.mock(BranchInfo.class);
+        mockMain = Mockito.mock(BoothElectricLayoutResolver.MainInfo.class);
+        mockBranch = Mockito.mock(BoothElectricLayoutResolver.BranchInfo.class);
     }
 
     @After

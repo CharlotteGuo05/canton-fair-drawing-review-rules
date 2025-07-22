@@ -68,7 +68,7 @@ public class BoothTopViewResolver implements DataResolver {
             return electricBox;
         }
     }
-    public class boxInfo{
+    public static class boxInfo{
         public int boxNumber;
         public String boxType;
 

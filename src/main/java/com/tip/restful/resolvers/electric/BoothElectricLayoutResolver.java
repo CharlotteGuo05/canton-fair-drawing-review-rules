@@ -89,7 +89,7 @@ public class BoothElectricLayoutResolver implements DataResolver {
         }
     }
 
-    public class MainInfo{
+    public static class MainInfo{
         private int box_power;   // 电箱功率
         private int main_v;      // 主开关电压
         private int main_i;     // 主开关电流
@@ -106,7 +106,7 @@ public class BoothElectricLayoutResolver implements DataResolver {
 
     }
 
-    public class BranchInfo{
+    public static class BranchInfo{
         private String no;          // 回路编号
         private int number;      // 数量
         private int power;       // 功率
@@ -141,7 +141,7 @@ public class BoothElectricLayoutResolver implements DataResolver {
 
     }
 
-    public class electriclayout{
+    public static class electriclayout{
         private String ground;
         private String main_cable_p;
         private String branch_cable_p;

@@ -41,15 +41,15 @@ public class InsuranceRule implements Rule {
 
 
         if (Integer.parseInt(accumulatedAmount.get("premise")) > premisesLiability) {
-            return RuleResult.fail("场地责任累计金额大于场地责任额度");
+            return RuleResult.fail("场地责任累计金额("+Integer.parseInt(accumulatedAmount.get("premise"))+"万元)大于场地责任额度("+premisesLiability+"万元)");
         }
 
         if (Integer.parseInt(accumulatedAmount.get("employer"))> employerLiability) {
-            return RuleResult.fail("雇员责任累计金额大于雇员责任额度");
+            return RuleResult.fail("雇员责任累计金额("+Integer.parseInt(accumulatedAmount.get("employer"))+"万元)大于雇员责任额度("+employerLiability+"万元)");
         }
 
         if (Integer.parseInt(accumulatedAmount.get("injury")) > personalInjury) {
-            return RuleResult.fail("第三者的人身损害累计金额大于第三者人员责任责任额度");
+            return RuleResult.fail("第三者的人身损害累计金额("+Integer.parseInt(accumulatedAmount.get("injury"))+"万元)大于第三者人员责任责任额度("+personalInjury+"万元)");
         }
 
         return RuleResult.pass();

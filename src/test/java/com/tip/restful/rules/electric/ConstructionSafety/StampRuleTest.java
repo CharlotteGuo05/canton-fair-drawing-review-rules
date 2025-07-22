@@ -3,7 +3,7 @@ package com.tip.restful.rules.electric.ConstructionSafety;
 import com.tip.restful.RuleContext;
 import com.tip.restful.RuleResult;
 import com.tip.restful.constant.DataKeyConstant;
-import com.tip.restful.rules.electric.ConstructionSafety.StampRule.StampInfo;
+import com.tip.restful.resolvers.electric.ConstructionSafetyResolver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,13 +18,13 @@ public class StampRuleTest {
 
     private StampRule rule;
     private RuleContext mockContext;
-    private StampInfo mockStamp;
+    private ConstructionSafetyResolver.StampInfo mockStamp;
 
     @Before
     public void setUp() {
         rule = new StampRule();
         mockContext = Mockito.mock(RuleContext.class);
-        mockStamp = Mockito.mock(StampInfo.class);
+        mockStamp = Mockito.mock(ConstructionSafetyResolver.StampInfo.class);
     }
 
     @After

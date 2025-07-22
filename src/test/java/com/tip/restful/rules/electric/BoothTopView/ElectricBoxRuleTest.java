@@ -3,7 +3,7 @@ package com.tip.restful.rules.electric.BoothTopView;
 import com.tip.restful.RuleContext;
 import com.tip.restful.RuleResult;
 import com.tip.restful.constant.DataKeyConstant;
-import com.tip.restful.rules.electric.BoothTopView.ElectricBoxRule.boxInfo;
+import com.tip.restful.resolvers.electric.BoothTopViewResolver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,13 +16,13 @@ public class ElectricBoxRuleTest {
 
     private ElectricBoxRule rule;
     private RuleContext mockContext;
-    private boxInfo mockBox;
+    private BoothTopViewResolver.boxInfo mockBox;
 
     @Before
     public void setUp() {
         rule = new ElectricBoxRule();
         mockContext = Mockito.mock(RuleContext.class);
-        mockBox = Mockito.mock(boxInfo.class);
+        mockBox = Mockito.mock(BoothTopViewResolver.boxInfo.class);
     }
 
     @After
