@@ -5,10 +5,19 @@ import com.tip.restful.RuleContext;
 import com.tip.restful.constant.DataKeyConstant;
 import com.tip.restful.service.KnowledgeRepositoryService;
 
+import java.util.List;
+
 public class BoothEffectView implements DataResolver {
+
+    /// 数据库获取
+//    private final IDaReportDrawingInfoService drawingInfoService;
 
     //知识库
     private final KnowledgeRepositoryService knowledgeRepositoryService;
+
+    // 大模型
+//    private final ModelExtractionService modelExtractionService;
+
 
     public BoothEffectView(KnowledgeRepositoryService knowledgeRepositoryService) {
         this.knowledgeRepositoryService = knowledgeRepositoryService;
@@ -23,6 +32,10 @@ public class BoothEffectView implements DataResolver {
 //                return drawingInfoService.getOneReportDrawingInfo("id,测试，后面需要改");
                 return "todo";
             case DataKeyConstant.MODEL_EXTRACT_INFO:
+                // 获取大模型信息
+//               return modelExtractionService.getExtraction(key);
+                return "todo";
+            case DataKeyConstant.KNOWLEDGE_BASE_INFO:
                 // 获取知识库信息
                 return knowledgeRepositoryService.getKnowledge(key);
             case DataKeyConstant.COMPANY_NAME:
@@ -30,7 +43,7 @@ public class BoothEffectView implements DataResolver {
 //                return map.get("companyName");
                 return "todo";
             case DataKeyConstant.FASCIA_COMPANY_NAME:
-                return "todo";
+                return ((CompanyRequirement)getModel(context)).getFasciaCompanyName();
             case DataKeyConstant.GREEN_TYPE:
                 return "todo";
             case DataKeyConstant.FORBIDDEN_MATERIAL:
@@ -44,12 +57,20 @@ public class BoothEffectView implements DataResolver {
             case DataKeyConstant.HONOR_GRAPH:
                 return "todo";
             case DataKeyConstant.DISPLAY_HEIGHT:
-                return "todo";
+                return ((SizeRequirement)getModel(context)).getDisplayHeight();
             case DataKeyConstant.DISPLAY_WIDTH:
-                return "todo";
+                return ((SizeRequirement)getModel(context)).getDisplayWidth();
             case DataKeyConstant.MATERIAL_LIST:
-                return "todo";
+                return ((GreenContent)getModel(context)).getMaterials();
             case DataKeyConstant.GRAPH_CONTENT:
+                return ((ViolationContent)getModel(context)).getViolationContent();
+            case DataKeyConstant.IS_FORBIDDEN:
+                return "todo";
+            case DataKeyConstant.IS_WOOD:
+                return "todo";
+            case DataKeyConstant.IS_HORNOR:
+                return "todo";
+            case DataKeyConstant.IS_VIOLATION:
                 return "todo";
 
             default:
@@ -57,5 +78,74 @@ public class BoothEffectView implements DataResolver {
 
         }
 
+    }
+    private Object getModel(RuleContext context) {
+        return context.get(DataKeyConstant.MODEL_EXTRACT_INFO);
+    }
+
+    public class CompanyRequirement{
+        public String fasciaCompanyName;
+
+        public String getFasciaCompanyName(){
+            return fasciaCompanyName;
+        }
+    }
+
+    public class SizeRequirement{
+        public String displayWidth;
+        public String displayHeight;
+
+        public String getDisplayWidth(){
+            return displayWidth;
+        }
+        public String getDisplayHeight(){
+            return displayHeight;
+        }
+    }
+
+    public class GreenContent{
+        public List<Material> materials;
+
+        public List<Material> getMaterials(){
+            return materials;
+        }
+
+    }
+
+    public class ViolationContent{
+        public String violationContent;
+        public String getViolationContent(){
+            return violationContent;
+        }
+    }
+
+    public class Material{
+        private String name;
+        private String movable;
+        private int width;
+        private int length;
+
+        public Material(String name, String movable, int width, int length) {
+            this.name = name;
+            this.movable = movable;
+            this.width = width;
+            this.length = length;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String isMovable() {
+            return movable;
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
+        public int getLength() {
+            return length;
+        }
     }
 }

@@ -4,6 +4,7 @@ import com.tip.restful.Rule;
 import com.tip.restful.RuleContext;
 import com.tip.restful.RuleResult;
 import com.tip.restful.constant.DataKeyConstant;
+import com.tip.restful.resolvers.electric.ConstructionSafetyResolver;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -12,7 +13,7 @@ import java.util.List;
 public class StampRule implements Rule {
     @Override
     public RuleResult apply(String imageId, RuleContext context) {
-        StampInfo stamp = (StampInfo)context.get(DataKeyConstant.SAFETY_STAMP);
+        ConstructionSafetyResolver.StampInfo stamp = (ConstructionSafetyResolver.StampInfo)context.get(DataKeyConstant.SAFETY_STAMP);
         String partyA = stamp.getPartyA();
         String partyB=  stamp.getPartyB();
 
@@ -47,19 +48,4 @@ public class StampRule implements Rule {
         return "印章要求";
     }
 
-    public class StampInfo {
-        public String partyA;
-        public String partyB;
-        public List<String> signDate;
-
-        public String getPartyA(){
-            return partyA;
-        }
-        public String getPartyB(){
-            return partyB;
-        }
-        public List<String> getSignDate(){
-            return signDate;
-        }
-    }
 }

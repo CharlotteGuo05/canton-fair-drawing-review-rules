@@ -30,4 +30,6 @@ public class BasicPicRule implements Rule {
     public String getName() {
         return "基本图片要求";
     }
+
+
 }

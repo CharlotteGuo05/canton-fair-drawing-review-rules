@@ -4,11 +4,12 @@ import com.tip.restful.Rule;
 import com.tip.restful.RuleContext;
 import com.tip.restful.RuleResult;
 import com.tip.restful.constant.DataKeyConstant;
+import com.tip.restful.resolvers.electric.BoothTopViewResolver;
 
 public class ElectricBoxRule implements Rule {
     @Override
     public RuleResult apply(String imageId, RuleContext context) {
-        boxInfo box=(boxInfo)context.get(DataKeyConstant.ELECTRIC_BOX);
+        BoothTopViewResolver.boxInfo box =(BoothTopViewResolver.boxInfo)context.get(DataKeyConstant.ELECTRIC_BOX);
 
         //报图信息中的“报图资料-展示用电电箱规格”
         String targetBoxType = (String) context.get(DataKeyConstant.TARGET_BOX_TYPE);
@@ -30,16 +31,4 @@ public class ElectricBoxRule implements Rule {
         return "电箱要求";
     }
 
-    public class boxInfo{
-        public int boxNumber;
-        public String boxType;
-
-        public int getBoxNumber(){
-            return boxNumber;
-        }
-
-        public String getBoxType(){
-            return boxType;
-        }
-    }
 }

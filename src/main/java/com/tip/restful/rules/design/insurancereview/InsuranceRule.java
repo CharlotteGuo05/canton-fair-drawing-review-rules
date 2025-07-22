@@ -6,6 +6,7 @@ import com.tip.restful.RuleResult;
 import com.tip.restful.constant.DataKeyConstant;
 
 import java.util.List;
+import java.util.Map;
 
 public class InsuranceRule implements Rule {
 
@@ -25,7 +26,7 @@ public class InsuranceRule implements Rule {
         }
 
         // 3. 累计赔付额判断
-        List<Integer> accumulatedAmount = (List<Integer>) context.get(DataKeyConstant.ACCUMULATED_AMOUNT);
+        Map<String, String> accumulatedAmount = (Map<String, String>) context.get(DataKeyConstant.ACCUMULATED_AMOUNT);
         if (accumulatedAmount == null || accumulatedAmount.size() < 3) {
             return RuleResult.fail("未含有累计赔付额度");
         }
@@ -39,15 +40,15 @@ public class InsuranceRule implements Rule {
         int personalInjury = Integer.parseInt((String) context.get(DataKeyConstant.PERSONAL_INJURY));
 
 
-        if (accumulatedAmount.get(0) > premisesLiability) {
+        if (Integer.parseInt(accumulatedAmount.get("premise")) > premisesLiability) {
             return RuleResult.fail("场地责任累计金额大于场地责任额度");
         }
 
-        if (accumulatedAmount.get(1) > employerLiability) {
+        if (Integer.parseInt(accumulatedAmount.get("employer"))> employerLiability) {
             return RuleResult.fail("雇员责任累计金额大于雇员责任额度");
         }
 
-        if (accumulatedAmount.get(2) > personalInjury) {
+        if (Integer.parseInt(accumulatedAmount.get("injury")) > personalInjury) {
             return RuleResult.fail("第三者的人身损害累计金额大于第三者人员责任责任额度");
         }
 

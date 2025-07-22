@@ -27,10 +27,14 @@ public class BoothThirdViewResolver implements DataResolver {
     public Object resolve(String key, RuleContext context) {
         switch (key) {
             case DataKeyConstant.REPORT_DRAWING_INFO:
-                // 数据库获取整个报图信息 todo 要改
+                // 数据库获取整个报图信息
 //                return drawingInfoService.getOneReportDrawingInfo("id,测试，后面需要改");
                 return "todo";
             case DataKeyConstant.MODEL_EXTRACT_INFO:
+                // 获取大模型信息
+//               return modelExtractionService.getExtraction(key);
+                return "todo";
+            case DataKeyConstant.KNOWLEDGE_BASE_INFO:
                 // 获取知识库信息
                 return knowledgeRepositoryService.getKnowledge(key);
             case DataKeyConstant.DRAWING_KIND:
@@ -58,19 +62,17 @@ public class BoothThirdViewResolver implements DataResolver {
             case DataKeyConstant.TARGET_WIDTH:
                 return "todo";
             case DataKeyConstant.HAS_FRONT_VIEWS:
-                return "todo";
+                return ((BasicRequirement)getModel(context)).getHasFront();
             case DataKeyConstant.HAS_SIDE_VIEWS:
-                return "todo";
+                return ((BasicRequirement)getModel(context)).getHasSide();
             case DataKeyConstant.HAS_TOP_VIEWS:
-                return "todo";
-            case DataKeyConstant.FRONT_HEIGHT:
-                return "todo";
-            case DataKeyConstant.SIDE_HEIGHT:
-                return "todo";
+                return ((BasicRequirement)getModel(context)).getHasTop();
+            case DataKeyConstant.HEIGHT:
+                return ((HeightRequirement)getModel(context)).getHeight();
             case DataKeyConstant.WIDTH:
-                return "todo";
+                return ((LengthWidthRequirement)getModel(context)).getWidth();
             case DataKeyConstant.LENGTH:
-                return "todo";
+                return ((LengthWidthRequirement)getModel(context)).getLength();
 
 
             default:
@@ -78,6 +80,43 @@ public class BoothThirdViewResolver implements DataResolver {
 
         }
     }
+    private Object getModel(RuleContext context) {
+        return context.get(DataKeyConstant.MODEL_EXTRACT_INFO);
+    }
 
+    public class BasicRequirement{
+        public String hasFront;
+        public String hasSide;
+        public String hasTop;
+
+        public String getHasFront() {
+            return hasFront;
+        }
+        public String getHasSide() {
+            return hasSide;
+        }
+        public String getHasTop() {
+            return hasTop;
+        }
+    }
+    public class LengthWidthRequirement{
+        public String length;
+        public String width;
+
+        public String getLength() {
+            return length;
+        }
+        public String getWidth() {
+            return width;
+        }
+
+    }
+    public class HeightRequirement{
+        public String height;
+
+        public String getHeight() {
+            return height;
+        }
+    }
 
 }

@@ -14,6 +14,9 @@ public class DataKeyConstant {
     // 大模型提取的信息
     public static final String MODEL_EXTRACT_INFO = "modelExtractInfo";
 
+    //知识库信息
+    public static final String KNOWLEDGE_BASE_INFO="knowledgeBaseInfo";
+
     //    ================ 展位三视图 ================
 
     // 系统内 报图信息
@@ -27,8 +30,7 @@ public class DataKeyConstant {
 
 
     // 大模型提取信息
-    public static final String FRONT_HEIGHT = "frontHeight"; //正视图高度
-    public static final String SIDE_HEIGHT = "sideHeight"; //侧视图高度
+    public static final String HEIGHT="height"; //高
 
     public static final String WIDTH = "width"; //宽
 
@@ -63,9 +65,15 @@ public class DataKeyConstant {
     public static final String FORBIDDEN_MATERIAL = "forbiddenMaterial"; //知识库-禁止材料
     public static final String WOOD_MATERIAL = "woodMaterial"; //知识库-木制材料
 
+    public static final String IS_FORBIDDEN = "isForbidden";
+    public static final String IS_WOOD ="isWood";
+
 
     public static final String VIOLATION = "violationContent"; //知识库-违规关键词、违规图形名称
     public static final String HONOR = "honorContent"; // //知识库-荣誉称号
+
+    public static final String IS_VIOLATION = "isViolation";
+    public static final String IS_HORNOR ="isHonor";
 
 
 
@@ -74,7 +82,7 @@ public class DataKeyConstant {
 
 
     //大模型提取
-    public static final String TILE_AREA="tileArea"; //单片瓷砖面积
+    public static final String TILE="tile"; //单片瓷砖属性
     public static final String TILE_COMPANY_NAME="tileCompanyName"; //瓷砖图上的企业名称
     public static final String HAS_BOOTH="hasBooth"; //门楣是否出现企业名称
 
@@ -98,6 +106,7 @@ public class DataKeyConstant {
 
 
     //大模型提取
+    public static final String INSURANCE_BASIC_REQUIREMENT ="insuranceBasicRequirement"; //基本图片要求
     public static final String HAS_INSURANCE="hasInsurance"; //是否含有保险单号和被保险人2个字段信息
     public static final String HAS_STAMP="hasStamp"; //是否有盖章
 

@@ -5,6 +5,7 @@ import com.tip.restful.RuleContext;
 import com.tip.restful.RuleResult;
 import com.tip.restful.constant.DataKeyConstant;
 
+
 public class ViolationContent implements Rule {
     @Override
     public RuleResult apply(String imageId,RuleContext context) {
@@ -14,7 +15,10 @@ public class ViolationContent implements Rule {
         //知识库-违规关键词、违规图形名称
         String violationContent = (String) context.get(DataKeyConstant.VIOLATION);
 
-        //====大模型匹配====
+        String isViolation = (String) context.get(DataKeyConstant.IS_VIOLATION);
+        if(isViolation.equals("true")){
+            return RuleResult.fail("存在违规内容");
+        }
 
 
         //知识库-荣誉称号
@@ -22,7 +26,10 @@ public class ViolationContent implements Rule {
         //荣誉称号证明图片
         String honorGraph = (String) context.get(DataKeyConstant.HONOR_GRAPH);
 
-        //====大模型匹配====
+        String isHonor = (String) context.get(DataKeyConstant.IS_HORNOR);
+        if(isHonor.equals("true")){
+            return RuleResult.fail("存在荣誉内容");
+        }
 
         if(graphContent.contains("若与事实不符或引发相关纠纷，本参展企业对此负全部责任") && honorGraph != null){
             return RuleResult.pass();

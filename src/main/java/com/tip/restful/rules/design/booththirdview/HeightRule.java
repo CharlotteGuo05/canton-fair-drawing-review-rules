@@ -28,18 +28,18 @@ public class HeightRule implements Rule {
 
 
         String type = (String) context.get(DataKeyConstant.DRAWING_KIND);
-        int frontHeight = Integer.parseInt((String) context.get(DataKeyConstant.FRONT_HEIGHT));
-        int sideHeight = Integer.parseInt((String) context.get(DataKeyConstant.SIDE_HEIGHT));
+        int height = Integer.parseInt((String) context.get(DataKeyConstant.HEIGHT));
+
 
         if("简装".equals(type)){
-            if(frontHeight >= 2400 || sideHeight >= 2400) return RuleResult.fail("简装单层展位高度(正视图："+frontHeight+"mm 或侧视图："+sideHeight+"mm)大于等于2.4m");
+            if(height >= 2400 ) return RuleResult.fail("简装单层展位高度("+height+"mm)大于等于2.4m");
         }
 
         if("特装".equals(type)){
             if(secondExhibition == 1){
-                if(frontHeight != 6000 || sideHeight != 6000) return RuleResult.fail("特装双层展位高度(正视图："+frontHeight+"mm 或侧视图："+sideHeight+"mm)不等于6m");
+                if(height != 6000 ) return RuleResult.fail("特装双层展位高度("+height+"mm)不等于6m");
             }else if(secondExhibition== 0){
-                if(frontHeight != 2400 || sideHeight != 2400) return RuleResult.fail("特装单层展位高度(正视图："+frontHeight+"mm 或侧视图："+sideHeight+"mm)不等于2.4m");
+                if( height != 2400) return RuleResult.fail("特装单层展位高度("+height+"mm)不等于2.4m");
             }
         }
 

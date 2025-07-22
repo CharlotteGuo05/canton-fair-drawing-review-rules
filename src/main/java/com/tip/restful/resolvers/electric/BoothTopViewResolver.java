@@ -12,6 +12,10 @@ public class BoothTopViewResolver implements DataResolver {
     //知识库
     private final KnowledgeRepositoryService knowledgeRepositoryService;
 
+
+    // 大模型
+//    private final ModelExtractionService modelExtractionService;
+
     public BoothTopViewResolver(KnowledgeRepositoryService knowledgeRepositoryService) {
         this.knowledgeRepositoryService = knowledgeRepositoryService;
     }
@@ -27,20 +31,53 @@ public class BoothTopViewResolver implements DataResolver {
 //                return drawingInfoService.getOneReportDrawingInfo("id,测试，后面需要改");
                 return "todo";
             case DataKeyConstant.MODEL_EXTRACT_INFO:
+                // 获取大模型信息
+//               return modelExtractionService.getExtraction(key);
+                return "todo";
+            case DataKeyConstant.KNOWLEDGE_BASE_INFO:
                 // 获取知识库信息
                 return knowledgeRepositoryService.getKnowledge(key);
-            case DataKeyConstant.EMPLOYER_LIABILITY:
-                return "todo";
             case DataKeyConstant.ELECTRIC_BOX:
-                return "todo";
+                return ((BoxRequirement)getModel(context)).getElectricBox();
             case DataKeyConstant.TARGET_BOX_TYPE:
+                return "todo";
+            case DataKeyConstant.TARGET_BOX_TYPE_TWO:
                 return "todo";
             case DataKeyConstant.TARGET_BOX_NUMBER:
                 return "todo";
+            case DataKeyConstant.ELECTRIC_TOP_REQUIREMENT:
+                return ((BasicRequirement)getModel(context)).getElectricTopRequirement();
 
             default:
                 throw new IllegalArgumentException("Invalid key: " + key);
 
+        }
+    }
+    private Object getModel(RuleContext context) {
+        return context.get(DataKeyConstant.MODEL_EXTRACT_INFO);
+    }
+    public class BasicRequirement{
+        public String electricTopRequirement;
+        public String getElectricTopRequirement(){
+            return electricTopRequirement;
+        }
+    }
+    public class BoxRequirement{
+        public boxInfo electricBox;
+        public boxInfo getElectricBox(){
+            return electricBox;
+        }
+    }
+    public class boxInfo{
+        public int boxNumber;
+        public String boxType;
+
+        public int getBoxNumber(){
+            return boxNumber;
+        }
+
+        public String getBoxType(){
+            return boxType;
         }
     }
 }
